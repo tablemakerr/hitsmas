@@ -96,7 +96,7 @@ Finally, reminds players of the rules and launches the actual part of the script
 def setup():
     define_areas()
 
-    if NUM_PLAYERS > 1:
+    if int(NUM_PLAYERS) > 1:
         check_counts()
 
     print("REMEMBER!  These are Illusive Target rules.")
@@ -142,7 +142,7 @@ def hitsmas():
         wildcard = str(random.choice(SELECTED_MAP.get('Wildcards')))
         print("WILDCARD:\t" + wildcard + "\n")
         # If we have uniqueness set & there's more than one player, remove the wildcard from the map's pool.
-        if UNIQUE_PULLS and NUM_PLAYERS > 1:
+        if UNIQUE_PULLS and int(NUM_PLAYERS) > 1:
             SELECTED_MAP.get('Wildcards').remove(str(wildcard))
     # Else, we will just alert that there is no wildcard
     else:
@@ -222,46 +222,46 @@ def define_areas():
     # TODO
     SAPIENZA = {
         'Name':'Sapienza, Italy',
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # TODO
     MARRAKESH = {
         'Name':'Marrakesh, Morroco',
-        'Targets':('Claus Hugo Strandberg', 'Reza Zaydan'), 
-        'Weapons':('Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('helmut fucking kruger','sheikeh zanzibar'),
-        'Wildcards':('Set Off Explosion In Runway', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
+        'Targets':['Claus Hugo Strandberg', 'Reza Zaydan'], 
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
+        'Wildcards':['Set Off Explosion In Runway', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     # TODO
     BANGKOK = {
         'Name':'Bangkok, Thailand',
-        'Targets':('Jordan Cross', 'Ken Morgan'), 
-        'Weapons':('Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('helmut fucking kruger','sheikeh zanzibar'),
-        'Wildcards':('Set Off Explosion In Runway', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
+        'Targets':['Jordan Cross', 'Ken Morgan'], 
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
+        'Wildcards':['Set Off Explosion In Runway', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     # TODO
     COLORADO = {
         'Name':'Colorado, USA',
-        'Targets':('Sean Rose', 'Maya Parvati', 'Ezra Berg', 'Penelope Graves'), 
-        'Weapons':('Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('helmut fucking kruger','sheikeh zanzibar'),
-        'Wildcards':('Set Off Explosion In Runway', 'Only Kill 2 Targets', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
+        'Targets':['Sean Rose', 'Maya Parvati', 'Ezra Berg', 'Penelope Graves'], 
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
+        'Wildcards':['Set Off Explosion In Runway', 'Only Kill 2 Targets', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     # TODO
     HOKKAIDO = {
         'Name':'Hokkaido, Japan',
-        'Targets':('Erich Soders', 'Yuki Yamazaki'), 
-        'Weapons':('Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('helmut fucking kruger','sheikeh zanzibar'),
-        'Wildcards':('Set Off Explosion In Runway', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
+        'Targets':['Erich Soders', 'Yuki Yamazaki'], 
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
+        'Wildcards':['Set Off Explosion In Runway', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     """
@@ -270,55 +270,55 @@ def define_areas():
     # TODO
     HAWKES_BAY = {
         'Name':"Hawke's Bay, New Zealand"
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # TODO
     MIAMI = {
         'Name':'Miami, Florida',
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # TODO
     SANTA_FORTUNA = {
         'Name':'Santa Fortuna, Colombia,
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # TODO
     MUMBAI = {
         'Name':'Mumbai, India',
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # TODO
     WHITTLETON_CREEK = {
         'Name':'Whittleton Creek, Vermont',
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
         # TODO
     ISLE_OF_SGAIL = {
         'Name':'Isle of Sgàil, Atlantic Ocean',
-        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
-        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
-        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
-        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
+        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
+        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
     """
 

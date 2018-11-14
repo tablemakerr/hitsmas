@@ -36,6 +36,48 @@ WILDCARD:       Set Off Explosion In Runway
 !! Bombastic rules in play.  You may choose a smuggled item
 ```
 ### Use Map Sapienza with Long Island rules for 3 Players
+```
+python ./hitsmas.py -m 2 -l -n 3
+REMEMBER!  These are Illusive Target rules.
+If you fail to assassinate your target in the given way, die, or target escapes, you LOSE!
+
+Map:            Sapienza, Italy
+
+Player 1
+Target:         Silvio Caruso
+DISGUISE:       Private Dick
+WEAPON:         Sword
+
+Target:         Francesca De Santis
+DISGUISE:       Priest
+WEAPON:         Katana
+
+!! Long Island rules in play.  Wildcard disabled
+
+
+Player 2
+Target:         Silvio Caruso
+DISGUISE:       Any Guard
+WEAPON:         Oversized Weapon
+
+Target:         Francesca De Santis
+DISGUISE:       Hazmat Suit
+WEAPON:         Any Explosive
+
+!! Long Island rules in play.  Wildcard disabled
+
+
+Player 3
+Target:         Silvio Caruso
+DISGUISE:       Dr Oscar
+WEAPON:         Sabotage
+
+Target:         Francesca De Santis
+DISGUISE:       Store Clerk
+WEAPON:         Thrown Item
+
+!! Long Island rules in play.  Wildcard disabled
+```
 
 ## Authors
 
@@ -50,4 +92,3 @@ This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LIC
 * [Giant Bomb](https://giantbomb.com) for introducting this style of play to me
 * [IO Interactive](https://www.ioi.dk/) for an amazing game experience
 * You, because you're amazing.
-

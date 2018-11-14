@@ -262,8 +262,8 @@ def define_areas():
         'Name':'Hokkaido, Japan',
         'Targets':['Erich Soders', 'Yuki Yamazaki'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Medical Implement', 'Thrown Item', 'Katana', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['Patient', 'Resort Staff', 'Chef', 'Handyman', 'Resort Security', 'Doctor', 'Morgue Doctor', 'Surgeon', 'Body Guard', 'Hospital Director', 'Chief Surgeon', 'VIP Patient', 'Yoga Instructor', 'Helicopter Pilot', 'Ninja', 'Motorcyclist', 'Baseball Player'],
-        'Wildcards':['Set Off Explosion In Runway', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Disguises':['Patient', 'Resort Staff', 'Chef', 'Handyman', 'Resort Security', 'Doctor', 'Morgue Doctor', 'Surgeon', 'Body Guard', 'Hospital Director', 'Chief Surgeon', 'Any VIP Patient', 'Yoga Instructor', 'Helicopter Pilot', 'Ninja', 'Motorcyclist', 'Baseball Player'],
+        'Wildcards':['Get Plastic Surgery', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     """
@@ -359,13 +359,13 @@ def usage():
     print ('Each player only gets one chance at the game, unless a wildcard specifies otherwise')
     print ('')
     print ('-h, --help, -?. ?    - Get this usage information')
-    print ('-b, --bombastic      - Enable Giant Bomb rules - Allow smuggled items to be set & configured.')
-    print ('-c, --chicago        - All pulls will be NOT be unique.')
-    print ('-l, --long_isalnd    - Remove the wildcard.')
+    print ('-b, --bombastic      - Enable Bomber rules - Allow smuggled items to be set & configured.')
+    print ('-c, --chicago        - All pulls will NOT be unique.')
+    print ('-l, --long_isalnd    - Removes the wildcard.')
+    print ('-n, --num_players #  - Sets the # of players & cycles through scenarios for each.')
     print ('-m, --map            - Tells the program which map to use')
     print ('Valid maps are paris(1), sapienza(2), marrakesh(3), bangkok(4), colorado(5), hokkaido(6)')
-    print ('-n, --num_players    - Sets the # of players & cycles through scenarios for each.')
-    print ('NYI -v, --verbose        - Enable verbose output for this script.')
+    #print ('NYI -v, --verbose        - Enable verbose output for this script.')
     sys.exit(0)
 
 """

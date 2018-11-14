@@ -1,21 +1,44 @@
+#!/usr/bin/env python
+
+"""
+Merry Hitsmas
+
+Based on the Contract feature within 2016's Hitman in combination with the Video Game website Giant Bomb.  I present a scripted version of Hitsmas.
+
+The purpose of this script is to save everyone money on those hats the Fortnite crowd tells you that you need.  Gotta save those vbucks somehow!
+This script doesn't have any major design goals to it other than to present a fun programming project for myself.  
+That said, all facets of this script are on a best effort basis and I guarantee nothing...well maybe something.
+
+@Version 1.0
+@Author TB
+"""
+
+# Import statements
 import random
 import string
 import getopt
 import sys
 
+# Main
 def main():
+    
+    # Define global variables that we care about
     global MAP
     global SMUGGLED_ENABLED
     global UNIQUE_PULLS
     global WILDCARD_REQUIRE
     global NUM_PLAYERS
+    global VERBOSE
 
+    # OK here is where we actually define them.
     SMUGGLED_ENABLED = False
     UNIQUE_PULLS = True
     WILDCARD_REQUIRE = True
     NUM_PLAYERS = 1
     MAP = 0
+    VERBOSE = False
 
+    # GetOpts
     try:
         opts, args = getopt.getopt(sys.argv[1:], "bchlm:n:v?", ["bombastic", "chicago", "help", "long_island", "map", "num_players", "verbose"])
     except getopt.GetoptError:
@@ -35,58 +58,113 @@ def main():
             NUM_PLAYERS = arg     
         elif opt in ("-v", "--verbose"):
             VERBOSE = True
+    
+    # Check for any bad input that we can check for at the moment.
     sanity()
+
+    # Start setting up what we need.
     setup()
 
+"""
+sanity()
+
+Just does a few checks to make sure the script has enough information to run.
+This could probably handle a few more things in the future.
+"""
 def sanity():
     FAIL = False
+    
     if int(MAP) == 0:
         print("You must specify a map.\n")
         FAIL = True
+    
     if int(MAP) > 6:
         print("You must specify a map between 1-6\n")
         FAIL = True
+    
+    # If any of these checks have failed, print the usage message which bails the whole script.    
     if FAIL:
         usage()
 
+"""
+setup()
+
+Sets up the Dictionaries that contain all the static map information.
+Then will check the count of players VS the amount of things on a map to ensure we can do enough if unique flags are set.
+Finally, reminds players of the rules and launches the actual part of the script we care about.
+"""
 def setup():
     define_areas()
-    check_counts()
+
+    if NUM_PLAYERS > 1:
+        check_counts()
 
     print("REMEMBER!  These are Illusive Target rules.")
     print("If you fail to assassinate your target in the given way, die, or target escapes, you LOSE!\n")
     print("Map:\t\t" + str(SELECTED_MAP.get('Name')))
+    
     for player in range(int(NUM_PLAYERS)):
         print("\nPlayer " + str(player+1))
         hitsmas()
 
+"""
+hitsmas()
+
+This is the bulk of the script.
+Ideally this is called when all items have been verified as sane.
+Takes in all your options and then actually spews out the rules of your contract as well as enough for the amount of players you specified.
+"""
 def hitsmas():
     # TODO: Add Color
-    # TODO: Make Weapon & Disguise pulls unique
-    # TODO: Setup loop to take multiple players with unique wildcards
-    #print(SELECTED_MAP.values())
 
+    # Loop through each target
     for target in SELECTED_MAP.get('Targets'):
+        # Grab a weapon from the valid pool.
         weapon = str(random.choice(SELECTED_MAP.get('Weapons')))
+        
+        # Grab a disguise from the valid pool.
         disguise = str(random.choice(SELECTED_MAP.get('Disguises')))
+    
+        # If we have uniqueness set, we will remove the items we just grabbed from the map's pool.
+        # TODO - Can this be more efficient? 
         if UNIQUE_PULLS:    
             SELECTED_MAP.get('Weapons').remove(str(weapon))
             SELECTED_MAP.get('Disguises').remove(str(disguise))
+
+        # Tell the player what to do for each target.    
         print("Target:\t\t" + target)
         print("DISGUISE:\t" + disguise)
         print("WEAPON:\t\t" + weapon + "\n")
+    
+    # Once the loop is over, we grab a wildcard for the map - if they're on.
     if WILDCARD_REQUIRE:
+        # Grab a wildcard from the valid pool.
         wildcard = str(random.choice(SELECTED_MAP.get('Wildcards')))
         print("WILDCARD:\t" + wildcard + "\n")
-        SELECTED_MAP.get('Wildcards').remove(str(wildcard))
+        # If we have uniqueness set & there's more than one player, remove the wildcard from the map's pool.
+        if UNIQUE_PULLS and NUM_PLAYERS > 1:
+            SELECTED_MAP.get('Wildcards').remove(str(wildcard))
+    # Else, we will just alert that there is no wildcard
     else:
         print("!! Long Island rules in play.  Wildcard disabled\n")
+    # If we have smuggled items enabled, - alert the player of such.
     if SMUGGLED_ENABLED:
         print("!! Bombastic rules in play.  You may choose a smuggled item\n")
-    #print(SELECTED_MAP.values())
 
+"""
+check_counts()
+
+If we have more than one player, uses that number and figures if we have enough items equipped on the map for that amount.
+Formula is basically if #Items < (#Players*#Targets) then the script will fail out because we don't have enough stuff to be unique every time.
+Prompts you to turn off unique flag if you have too many people playing.
+
+# TODO Set flags for unique weapons, unique disguises, or unique both.
+# TODO I'm sure there's a better way to not have so many print statements for each IF block
+"""
 def check_counts():
+    # Verify if we want to do that.
     if UNIQUE_PULLS:
+        # Get the counts for each item now that we know the map
         NUM_WEAPONS = len(SELECTED_MAP.get('Weapons'))
         NUM_DISGUISES = len(SELECTED_MAP.get('Disguises'))
         NUM_TARGETS = len(SELECTED_MAP.get('Targets'))
@@ -99,12 +177,14 @@ def check_counts():
             print("# of weapons configured:\t" + str(NUM_WEAPONS))
             print("Required # of weapons:\t\t" + str(REQUIRED_NUM_ITEMS))
             sys.exit(3)
+
         if int(NUM_DISGUISES) < int(REQUIRED_NUM_ITEMS):
             print("Not enough Disguises on this Map for unique pulls")
             print("Please try again with Chicago rules in place.  Or yell at Tyler to add more shit.\n")
             print("# of disguises configured:\t" + str(NUM_DISGUISES))
             print("Required # of disguises:\t\t" + str(REQUIRED_NUM_ITEMS))
             sys.exit(3)
+
         if int(NUM_WILDCARDS) < int(NUM_PLAYERS):
             print("Not enough Wildcards on this Map for unique pulls")
             print("Please try again with Chicago rules in place.  Or yell at Tyler to add more shit.\n")
@@ -112,8 +192,17 @@ def check_counts():
             print("Required # of wildcards:\t\t" + str(NUM_PLAYERS))
             sys.exit(3)
 
+"""
+define_areas()
+
+Actualy sets up the Dictionaries that contain each map's information. 
+Probably the easiest way I've found so far to deal with all this static information rather than shipping a bunch of CSV or XML files.
+Probably not that well off for usability if people don't want to go into the code to add to each map.
+But then again you probably pulled this from my Github so I'll assume you know enough of what you're doing if you're also reading this.
+"""
 def define_areas():
 
+    # Setup the maps as globals as they need to be accessed elsewhere
     global PARIS
     global SAPIENZA
     global MARRAKESH
@@ -130,6 +219,7 @@ def define_areas():
         'Wildcards':['Set Off Explosion In Runway', 'Kill One Target During/After Fireworks', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
+    # TODO
     SAPIENZA = {
         'Name':'Sapienza, Italy',
         'Targets':('Silvio Caruso', 'Francesca De Santis'), 
@@ -138,6 +228,7 @@ def define_areas():
         'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
     }
 
+    # TODO
     MARRAKESH = {
         'Name':'Marrakesh, Morroco',
         'Targets':('Claus Hugo Strandberg', 'Reza Zaydan'), 
@@ -146,6 +237,7 @@ def define_areas():
         'Wildcards':('Set Off Explosion In Runway', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
     }
 
+    # TODO
     BANGKOK = {
         'Name':'Bangkok, Thailand',
         'Targets':('Jordan Cross', 'Ken Morgan'), 
@@ -154,6 +246,7 @@ def define_areas():
         'Wildcards':('Set Off Explosion In Runway', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
     }
 
+    # TODO
     COLORADO = {
         'Name':'Colorado, USA',
         'Targets':('Sean Rose', 'Maya Parvati', 'Ezra Berg', 'Penelope Graves'), 
@@ -162,6 +255,7 @@ def define_areas():
         'Wildcards':('Set Off Explosion In Runway', 'Only Kill 2 Targets', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
     }
 
+    # TODO
     HOKKAIDO = {
         'Name':'Hokkaido, Japan',
         'Targets':('Erich Soders', 'Yuki Yamazaki'), 
@@ -170,6 +264,66 @@ def define_areas():
         'Wildcards':('Set Off Explosion In Runway', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom')
     }
 
+    """
+    # PLACEHOLDERS for Hitman 2
+
+    # TODO
+    HAWKES_BAY = {
+        'Name':"Hawke's Bay, New Zealand"
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+
+    # TODO
+    MIAMI = {
+        'Name':'Miami, Florida',
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+
+    # TODO
+    SANTA_FORTUNA = {
+        'Name':'Santa Fortuna, Colombia,
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+
+    # TODO
+    MUMBAI = {
+        'Name':'Mumbai, India',
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+
+    # TODO
+    WHITTLETON_CREEK = {
+        'Name':'Whittleton Creek, Vermont',
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+
+        # TODO
+    ISLE_OF_SGAIL = {
+        'Name':'Isle of Sgàil, Atlantic Ocean',
+        'Targets':('Silvio Caruso', 'Francesca De Santis'), 
+        'Weapons':('Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'), 
+        'Disguises':('Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'), 
+        'Wildcards':('Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper')
+    }
+    """
+
+    # This dictionary is used in conjunction with the command flag of -m to determine which map to use.
+    # This will also allow us to expand on the amount of maps once we incorporate Hitman 2 (2018)
     MAPS = {
         1: PARIS,
         2: SAPIENZA,
@@ -178,9 +332,23 @@ def define_areas():
         5: COLORADO,
         6: HOKKAIDO
     }
+    SELECTED_MAP = MAPS.get(int(MAP)) 
+"""
+        # PLACEHOLDERS for Hitman 2
+        7: HAWKES_BAY,
+        8: MIAMI,
+        9: SANTA_FORTUNA,
+        10: MUMBAI,
+        11: WHITTLETON_CREEK,
+        12: ISLE_OF_SGAIL
+    }
+""" 
 
-    SELECTED_MAP = MAPS.get(int(MAP))    
+"""
+usage()
 
+This just spits out the help message for confused peeps and hopefully gives some good information on how to use this script.
+"""
 def usage():
     print ('MERRY HITSMAS!!!!!!')
     print ('This allows you to plop in a Himant 1 or 2 (NYI) map and we will spit out a contract for you')
@@ -195,8 +363,20 @@ def usage():
     print ('-m, --map            - Tells the program which map to use')
     print ('Valid maps are paris(1), sapienza(2), marrakesh(3), bangkok(4), colorado(5), hokkaido(6)')
     print ('-n, --num_players    - Sets the # of players & cycles through scenarios for each.')
-    print ('-v, --verbose        - Enable verbose output for this script.')
+    print ('NYI -v, --verbose        - Enable verbose output for this script.')
     sys.exit(0)
+
+"""
+!!!NYI!!!
+verbose(text)
+
+@param text - The text that you want printed out.
+
+Used for verbose output of the script.  Ideally this is just for debugging what may be going wrong if there's an issue.
+"""
+def verbosity(text):
+    if VERBOSE:
+        print(str(text))
 
 ### Call Main
 if __name__ == "__main__":

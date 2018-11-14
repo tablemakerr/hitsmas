@@ -1,23 +1,53 @@
-# hitsmas
-A Python version of Giant Bomb's popular Hitsmas game mode for the recent Hitman games.
+# Hitsmas
 
-Ideally this simple python script should work for any newer version of python3 out of the box.  Further testing of that claim required
+A (very unofficial) Python version of Giant Bomb's popular Hitsmas game mode for the recent Hitman games.  Ideally this simple python script should work for any newer version of python3 out of the box.  Further testing of that claim required.  The idea is to just launch the script with the flags that appeal to you and the script will return how your Hitman contract should go!
 
-The idea is to just launch the script with the flags that appeal to you and the script will return how your Hitman contract should go!
 
-Usage prompt below:
+## Getting Started
 
-MERRY HITSMAS!!!!!!
-This allows you to plop in a Himant 1 or 2 (NYI) map and we will spit out a contract for you
+Download or clone or copy&paste or whatever method you have for getting this script onto your system in a runnable fashion.
 
-Targets may be done in any order
-Each player only gets one chance at the game, unless a wildcard specifies otherwise
+### Prerequisites
 
--h, --help, -?. ?    - Get this usage information
--b, --bombastic      - Enable Giant Bomb rules - Allow smuggled items to be set & configured.
--c, --chicago        - All pulls will be NOT be unique.
--l, --long_isalnd    - Remove the wildcard.
--m, --map            - Tells the program which map to use
-Valid maps are paris(1), sapienza(2), marrakesh(3), bangkok(4), colorado(5), hokkaido(6)
--n, --num_players    - Sets the # of players & cycles through scenarios for each.
--v, --verbose        - Enable verbose output for this script.
+This should work on any Windows, Linux, or Mac system with Python3.  Python2 is not recommended and I'm pretty sure some ways that I manipulate things just don't work in Python2
+
+## Examples
+
+### Use Map France with Bombastic rules for 1 Player:
+
+```
+python ./hitsmas.py -m 1 -b
+REMEMBER!  These are Illusive Target rules.
+If you fail to assassinate your target in the given way, die, or target escapes, you LOSE!
+
+Map:            Paris, France
+
+Player 1
+Target:         Viktor Novikov
+DISGUISE:       Crew Member
+WEAPON:         Any Explosive
+
+Target:         Dalia Margolis
+DISGUISE:       Chef
+WEAPON:         Screwdriver
+
+WILDCARD:       Set Off Explosion In Runway
+
+!! Bombastic rules in play.  You may choose a smuggled item
+```
+### Use Map Sapienza with Long Island rules for 3 Players
+
+## Authors
+
+* **TB** - *ME!*
+
+## License
+
+This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+* [Giant Bomb](https://giantbomb.com) for introducting this style of play to me
+* [IO Interactive](https://www.ioi.dk/) for an amazing game experience
+* You, because you're amazing.
+

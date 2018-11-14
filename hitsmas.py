@@ -211,6 +211,7 @@ def define_areas():
     global HOKKAIDO
     global SELECTED_MAP
 
+    # Need more/better Wildcards
     PARIS = {
         'Name':'Paris, France',
         'Targets':['Viktor Novikov', 'Dalia Margolis'], 
@@ -219,7 +220,7 @@ def define_areas():
         'Wildcards':['Set Off Explosion In Runway', 'Kill One Target During/After Fireworks', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
-    # TODO
+    # Need more/better Wildcards
     SAPIENZA = {
         'Name':'Sapienza, Italy',
         'Targets':['Silvio Caruso', 'Francesca De Santis'], 
@@ -228,40 +229,41 @@ def define_areas():
         'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
-    # TODO
+    # Need more/better Wildcards
     MARRAKESH = {
         'Name':'Marrakesh, Morroco',
         'Targets':['Claus Hugo Strandberg', 'Reza Zaydan'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
-        'Wildcards':['Set Off Explosion In Runway', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Disguises':['Shop Keep', 'Food Vendor', 'Waiter', 'Handyman', 'Printing Crew', 'Any Guard (Non Military)', 'Any Non-Military Officer', 'Janitor', 'Cameraman', 'Intern', 'Masseur', 'Prisoner', 'Fortune Teller'],
+        'Wildcards':['One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Coin a Soldier Through a Hallway Length', 'Shootout All Cameras', 'Break-Up The Protest']
     }
 
-    # TODO
+    # Need more/better Wildcards
     BANGKOK = {
         'Name':'Bangkok, Thailand',
         'Targets':['Jordan Cross', 'Ken Morgan'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
-        'Wildcards':['Set Off Explosion In Runway', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Disguises':['Hotel Staff', 'Any Non-Unique Guard', 'Waiter', 'Kitchen Staff', 'Groundskeeper', 'Exterminator', 'Recording Crew', 'Jordan Cross Bodyguard', 'Morgans Bodyguard', 'Abel De Silva', 'Stalker'],
+        'Wildcards':['You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Hit 3 People With a Golf Club', 'Put 2 People in the Ocean']
     }
 
-    # TODO
+    # Need more/better Wildcards
+    # Try not to use unique pulls with this level....
     COLORADO = {
         'Name':'Colorado, USA',
         'Targets':['Sean Rose', 'Maya Parvati', 'Ezra Berg', 'Penelope Graves'], 
-        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
-        'Wildcards':['Set Off Explosion In Runway', 'Only Kill 2 Targets', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Cook', 'Technician', 'Soldier', 'Elite Solider', 'Spec Ops', 'Explosives Specialist', 'Hacker', 'Point Man', 'Scarecrow'],
+        'Wildcards':['Snipe 2 of your Targets', 'Only Kill 2 Targets', 'One Save Scum', 'Brand 2 People', 'Beat 3 People With a Mannequin Arm', 'Choose Starting Location', 'Kill at Least One Non-Target via Sabotage']
     }
 
-    # TODO
+    # Need more/better Wildcards
     HOKKAIDO = {
         'Name':'Hokkaido, Japan',
         'Targets':['Erich Soders', 'Yuki Yamazaki'], 
-        'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['helmut fucking kruger','sheikeh zanzibar'],
-        'Wildcards':['Set Off Explosion In Runway', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Weapons':['Oversized Weapon', 'Chef Implement', 'Medical Implement', 'Thrown Item', 'Katana', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
+        'Disguises':['Patient', 'Resort Staff', 'Chef', 'Handyman', 'Resort Security', 'Doctor', 'Morgue Doctor', 'Surgeon', 'Body Guard', 'Hospital Director', 'Chief Surgeon', 'VIP Patient', 'Yoga Instructor', 'Helicopter Pilot', 'Ninja', 'Motorcyclist', 'Baseball Player'],
+        'Wildcards':['Set Off Explosion In Runway', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     """

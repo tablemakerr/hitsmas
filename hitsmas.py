@@ -217,7 +217,7 @@ def define_areas():
         'Targets':['Viktor Novikov', 'Dalia Margolis'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive', 'Screwdriver'], 
         'Disguises':['Chef', 'Palace Staff', 'Auction Staff', 'Stylist', 'Crew Member', 'Guard', 'HELMUT FUCKING KRUGER', 'SHEIKH ZANZIBAR'],
-        'Wildcards':['Invert Your Default Axis', 'Set Off Explosion In Runway', 'Kill One Target During/After Fireworks', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'Set Off Explosion In Runway', 'Kill One Target During/After Fireworks', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     # Need more/better Wildcards
@@ -226,7 +226,7 @@ def define_areas():
         'Targets':['Silvio Caruso', 'Francesca De Santis'], 
         'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
         'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
-        'Wildcards':['Invert Your Default Axis', 'Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
     }
 
     # Need more/better Wildcards
@@ -235,7 +235,7 @@ def define_areas():
         'Targets':['Claus Hugo Strandberg', 'Reza Zaydan'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
         'Disguises':['Shop Keep', 'Food Vendor', 'Waiter', 'Handyman', 'Printing Crew', 'Any Guard (Non Military)', 'Any Non-Military Officer', 'Janitor', 'Cameraman', 'Intern', 'Masseur', 'Prisoner', 'Fortune Teller'],
-        'Wildcards':['Invert Your Default Axis', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Coin a Soldier Through a Hallway Length', 'Shootout All Cameras', 'Break-Up The Protest']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Coin a Soldier Through a Hallway Length', 'Shootout All Cameras', 'Break-Up The Protest']
     }
 
     # Need more/better Wildcards
@@ -244,7 +244,7 @@ def define_areas():
         'Targets':['Jordan Cross', 'Ken Morgan'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
         'Disguises':['Hotel Staff', 'Any Non-Unique Guard', 'Waiter', 'Kitchen Staff', 'Groundskeeper', 'Exterminator', 'Recording Crew', 'Jordan Cross Bodyguard', 'Morgans Bodyguard', 'Abel De Silva', 'Stalker'],
-        'Wildcards':['Invert Your Default Axis', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Hit 3 People With a Golf Club', 'Put 2 People in the Ocean']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'You Must RAWK OUT',  'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom', 'Hit 3 People With a Golf Club', 'Put 2 People in the Ocean']
     }
 
     # Need more/better Wildcards
@@ -254,7 +254,7 @@ def define_areas():
         'Targets':['Sean Rose', 'Maya Parvati', 'Ezra Berg', 'Penelope Graves'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
         'Disguises':['Cook', 'Technician', 'Soldier', 'Elite Solider', 'Spec Ops', 'Explosives Specialist', 'Hacker', 'Point Man', 'Scarecrow'],
-        'Wildcards':['Invert Your Default Axis', 'Snipe 2 of your Targets', 'Only Kill 2 Targets', 'One Save Scum', 'Brand 2 People', 'Beat 3 People With a Mannequin Arm', 'Choose Starting Location', 'Kill at Least One Non-Target via Sabotage']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'Snipe 2 of your Targets', 'Only Kill 2 Targets', 'One Save Scum', 'Brand 2 People', 'Beat 3 People With a Mannequin Arm', 'Choose Starting Location', 'Kill at Least One Non-Target via Sabotage']
     }
 
     # Need more/better Wildcards
@@ -263,7 +263,7 @@ def define_areas():
         'Targets':['Erich Soders', 'Yuki Yamazaki'], 
         'Weapons':['Oversized Weapon', 'Chef Implement', 'Medical Implement', 'Thrown Item', 'Katana', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
         'Disguises':['Patient', 'Resort Staff', 'Chef', 'Handyman', 'Resort Security', 'Doctor', 'Morgue Doctor', 'Surgeon', 'Body Guard', 'Hospital Director', 'Chief Surgeon', 'Any VIP Patient', 'Yoga Instructor', 'Helicopter Pilot', 'Ninja', 'Motorcyclist', 'Baseball Player'],
-        'Wildcards':['Invert Your Default Axis', 'Get Plastic Surgery', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
+        'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'Get Plastic Surgery', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
     """

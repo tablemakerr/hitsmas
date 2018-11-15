@@ -60,9 +60,11 @@ def main():
             VERBOSE = True
     
     # Check for any bad input that we can check for at the moment.
+    verbosity("Checking for sanity\n")
     sanity()
 
     # Start setting up what we need.
+    verbosity("Setting up the Contracts\n")
     setup()
 
 """
@@ -74,16 +76,14 @@ This could probably handle a few more things in the future.
 def sanity():
     FAIL = False
     
-    if int(MAP) == 0:
-        print("You must specify a map.\n")
-        FAIL = True
-    
-    if int(MAP) > 6:
+    verbosity("Checking if you entered a valid Map #\n")
+    if int(MAP) <= 0 or int(MAP) > 6:
         print("You must specify a map between 1-6\n")
         FAIL = True
-    
+        
     # If any of these checks have failed, print the usage message which bails the whole script.    
     if FAIL:
+        verbosity("We detected an error.  The script will now tell you how it goes and exit.\n")
         usage()
 
 """
@@ -94,8 +94,10 @@ Then will check the count of players VS the amount of things on a map to ensure 
 Finally, reminds players of the rules and launches the actual part of the script we care about.
 """
 def setup():
+    verbosity("Defining the Maps\n")
     define_areas()
 
+    verbosity("Checking if we need to ensure if there's enough items to go around\n")
     if int(NUM_PLAYERS) > 1:
         check_counts()
 
@@ -103,6 +105,7 @@ def setup():
     print("If you fail to assassinate your target in the given way, die, or target escapes, you LOSE!\n")
     print("Map:\t\t" + str(SELECTED_MAP.get('Name')))
     
+    verbosity("Starting to loop through all the players\n")
     for player in range(int(NUM_PLAYERS)):
         print("\nPlayer " + str(player+1))
         hitsmas()
@@ -118,37 +121,51 @@ def hitsmas():
     # TODO: Add Color
 
     # Loop through each target
+    verbosity("Looping through each target for each player\n")
     for target in SELECTED_MAP.get('Targets'):
         # Grab a weapon from the valid pool.
+        verbosity("Selecting a weapon for " + target + "\n")
         weapon = str(random.choice(SELECTED_MAP.get('Weapons')))
         
         # Grab a disguise from the valid pool.
+        verbosity("Selecting a disguise for " + target + "\n")
         disguise = str(random.choice(SELECTED_MAP.get('Disguises')))
     
         # If we have uniqueness set, we will remove the items we just grabbed from the map's pool.
         # TODO - Can this be more efficient? 
-        if UNIQUE_PULLS:    
+        verbosity("Do we care about unique pulls?\n")
+        if UNIQUE_PULLS:
+            verbosity("Removing " + weapon + " from the pool\n")    
             SELECTED_MAP.get('Weapons').remove(str(weapon))
+
+            verbosity("Removing " + disguise + " from the pool\n")
             SELECTED_MAP.get('Disguises').remove(str(disguise))
 
         # Tell the player what to do for each target.    
+        verbosity("Telling the player what they got\n")
         print("Target:\t\t" + target)
         print("DISGUISE:\t" + disguise)
         print("WEAPON:\t\t" + weapon + "\n")
     
     # Once the loop is over, we grab a wildcard for the map - if they're on.
+    verbosity("Determining if we're giving the player a wildcard\n")
     if WILDCARD_REQUIRE:
         # Grab a wildcard from the valid pool.
+        verbosity("Selecting a wildcard\n")
         wildcard = str(random.choice(SELECTED_MAP.get('Wildcards')))
         print("WILDCARD:\t" + wildcard + "\n")
+
         # If we have uniqueness set & there's more than one player, remove the wildcard from the map's pool.
         if UNIQUE_PULLS and int(NUM_PLAYERS) > 1:
+            verbosity("Removing " + wildcard + " from the pool\n")
             SELECTED_MAP.get('Wildcards').remove(str(wildcard))
     # Else, we will just alert that there is no wildcard
     else:
+        verbosity("Alerting about Long Island Rules\n")
         print("!! Long Island rules in play.  Wildcard disabled\n")
     # If we have smuggled items enabled, - alert the player of such.
     if SMUGGLED_ENABLED:
+        verbosity("Alerting about Bombastic Rules\n")
         print("!! Bombastic rules in play.  You may choose a smuggled item\n")
 
 """
@@ -163,14 +180,17 @@ Prompts you to turn off unique flag if you have too many people playing.
 """
 def check_counts():
     # Verify if we want to do that.
+    verbosity("Ensuring we actually care about unique pulls\n")
     if UNIQUE_PULLS:
         # Get the counts for each item now that we know the map
+        verbosity("Setting up the values for each item that could run out\n")
         NUM_WEAPONS = len(SELECTED_MAP.get('Weapons'))
         NUM_DISGUISES = len(SELECTED_MAP.get('Disguises'))
         NUM_TARGETS = len(SELECTED_MAP.get('Targets'))
         NUM_WILDCARDS = len(SELECTED_MAP.get('Wildcards'))
         REQUIRED_NUM_ITEMS = int(NUM_PLAYERS)*int(NUM_TARGETS)
 
+        verbosity("Checking if there are enough Weapons\n")
         if int(NUM_WEAPONS) < int(REQUIRED_NUM_ITEMS): 
             print("Not enough Weapons on this Map for unique pulls")
             print("Please try again with Chicago rules in place.  Or yell at Tyler to add more shit.\n")
@@ -178,6 +198,7 @@ def check_counts():
             print("Required # of weapons:\t\t" + str(REQUIRED_NUM_ITEMS))
             sys.exit(3)
 
+        verbosity("Checking if there are enough Disguises\n")
         if int(NUM_DISGUISES) < int(REQUIRED_NUM_ITEMS):
             print("Not enough Disguises on this Map for unique pulls")
             print("Please try again with Chicago rules in place.  Or yell at Tyler to add more shit.\n")
@@ -185,6 +206,7 @@ def check_counts():
             print("Required # of disguises:\t\t" + str(REQUIRED_NUM_ITEMS))
             sys.exit(3)
 
+        verbosity("Checking if there are enough Wildcards\n")
         if int(NUM_WILDCARDS) < int(NUM_PLAYERS):
             print("Not enough Wildcards on this Map for unique pulls")
             print("Please try again with Chicago rules in place.  Or yell at Tyler to add more shit.\n")
@@ -202,6 +224,7 @@ But then again you probably pulled this from my Github so I'll assume you know e
 """
 def define_areas():
 
+    verbosity("Setting up global maps")
     # Setup the maps as globals as they need to be accessed elsewhere
     global PARIS
     global SAPIENZA
@@ -270,15 +293,6 @@ def define_areas():
     # PLACEHOLDERS for Hitman 2
 
     # TODO
-    HAWKES_BAY = {
-        'Name':"Hawke's Bay, New Zealand"
-        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
-        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
-        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
-    }
-
-    # TODO
     MIAMI = {
         'Name':'Miami, Florida',
         'Targets':['Silvio Caruso', 'Francesca De Santis'], 
@@ -334,15 +348,15 @@ def define_areas():
         5: COLORADO,
         6: HOKKAIDO
     }
+    verbosity("Setting the map based on your selection\n")
     SELECTED_MAP = MAPS.get(int(MAP)) 
 """
         # PLACEHOLDERS for Hitman 2
-        7: HAWKES_BAY,
-        8: MIAMI,
-        9: SANTA_FORTUNA,
-        10: MUMBAI,
-        11: WHITTLETON_CREEK,
-        12: ISLE_OF_SGAIL
+        7: MIAMI,
+        8: SANTA_FORTUNA,
+        9: MUMBAI,
+        10: WHITTLETON_CREEK,
+        11: ISLE_OF_SGAIL
     }
 """ 
 

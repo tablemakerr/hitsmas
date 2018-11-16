@@ -77,7 +77,7 @@ def sanity():
     FAIL = False
     
     verbosity("Checking if you entered a valid Map #\n")
-    if int(MAP) <= 0 or int(MAP) > 6:
+    if int(MAP) <= 0 or int(MAP) > 8:
         print("You must specify a map between 1-6\n")
         FAIL = True
         
@@ -289,26 +289,28 @@ def define_areas():
         'Wildcards':['Kill Bystander in Front of a Target', 'Invert Your Default Axis', 'Get Plastic Surgery', 'You Can Kill the Heart Instead', 'Kill the AI', 'One Save Scum', 'Choose Starting Location', 'Put 5 Bodies In Any One Bathroom']
     }
 
+    # Credit to Reddit user Quinez
+    MIAMI = {
+        'Name':'Miami, Florida',
+        'Targets':['Sierra Knox', 'Robert Knox'],
+        'Weapons':['Amputation Knife', 'Pistol', 'Lethal poison (syringe or consumed)', 'Large (Two-Handed) Gun', 'Lethal Fall', 'Screwdriver', 'Any Axe', 'Explosion', 'Kitchen Knife', 'Neck Snap', 'Sniper Rifle', 'Fiber Wire', 'Cleaver', 'Kronstadt Super Fuel'],
+        'Disguises':['Ted Mendez', 'Sheikh Zanzibar', 'Mascot', 'Moses Lee (yellow cowboy driver)', 'Kronstadt Engineer', 'Any Driver', 'Any Mechanic', 'Florida Man', 'Medic', 'Journalist', 'Race Security', 'Classic 47 Suit', 'Kronstadt Security', 'Food Server or Waiter', 'Street Performer (in Tunnel)' ],
+        'Wildcards':['Cause a car to crash', 'Kill someone with the android', 'Slap three guards with a fish', 'Dan gets to command you to "be that guy!“ once during the run', 'KO three scientists with an android arm', 'Kill someone before taking your first step', 'Climb out a window while in combat', 'Escape by helicopter while dressed as the flamingo mascot' ] 
+    }
+
+    # Credit to Reddit user Quinez
+    SANTA_FORTUNA = {
+        'Name':'Santa Fortuna, Colombia',
+        'Targets':['Rico Delgado', 'Jorge Franco', 'Andrea Martinez' ],
+        'Weapons':['Piranhas', 'Pistol', 'Lethal poison (syringe or consumed)', 'Large (Two-Handed) Gun', 'Lethal Fall', 'Screwdriver', 'Any Axe', 'Explosion', 'Kitchen Knife', 'Neck Snap', 'Sniper Rifle', 'Fiber Wire', 'Cleaver', 'Accident'],
+        'Disguises':['Shaman', 'P-Power', 'Barman', 'Mansion Guard', 'Street Soldier', 'Coca Field Guard', 'Coca Field Worker', 'Cocaine Engineer', 'Drummer', 'Hippo Whisperer', 'Submarine Engineer', 'Gardener', 'Mansion Employee', 'Construction Worker', 'Hippie' ],
+        'Wildcards':['Feed three people to the hippo', 'KO three mansion guards with cocaine blocks', 'Dan gets to command you to "be that guy!“ once during the run', 'Poison the shamans stew with a poison frog', 'Kill or KO either Ricos wife or brother', 'Put rat poison in a line of cocaine', 'KO three innocent civilians with a meaty bone in ten seconds', 'Shoot someone in the submarine cave with a shotgun' ]
+    }
+
     """
     # PLACEHOLDERS for Hitman 2
 
-    # TODO
-    MIAMI = {
-        'Name':'Miami, Florida',
-        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
-        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
-        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
-    }
 
-    # TODO
-    SANTA_FORTUNA = {
-        'Name':'Santa Fortuna, Colombia,
-        'Targets':['Silvio Caruso', 'Francesca De Santis'], 
-        'Weapons':['Amputation Knife', 'Circumscision Knife', 'Katana', 'Hatchet', 'Oversized Weapon', 'Chef Implement', 'Thrown Item', 'Sword', 'Any Firearm',  'Sabotage', 'Any Explosive'], 
-        'Disguises':['Delivery Man', 'Gardener', 'Plumber', 'Store Clerk', 'Any Guard', 'Church Staff', 'Priest', 'Plague Doctor', 'Waiter/Butler', 'Kitchen Staff', 'Mansion Staff', 'Hazmat Suit', 'Lab Tech', 'Private Dick', 'Dr Oscar', 'Roberto Vargas', 'Cyclist', 'Bohemian', 'Street Performer'], 
-        'Wildcards':['Ring Church Bell', 'Must Escape via Airplane', 'Win After 2nd Target', 'Knock Out 5 People With Spaghetti Sauce', 'One Save Scum', 'Choose Starting Location', 'Put 3 Bodies In Wood Chipper']
-    }
 
     # TODO
     MUMBAI = {
@@ -346,14 +348,15 @@ def define_areas():
         3: MARRAKESH,
         4: BANGKOK,
         5: COLORADO,
-        6: HOKKAIDO
+        6: HOKKAIDO,
+        7: MIAMI,
+        8: SANTA_FORTUNA,
     }
     verbosity("Setting the map based on your selection\n")
     SELECTED_MAP = MAPS.get(int(MAP)) 
 """
         # PLACEHOLDERS for Hitman 2
-        7: MIAMI,
-        8: SANTA_FORTUNA,
+
         9: MUMBAI,
         10: WHITTLETON_CREEK,
         11: ISLE_OF_SGAIL
@@ -378,7 +381,7 @@ def usage():
     print ('-l, --long_isalnd    - Removes the wildcard.')
     print ('-n, --num_players #  - Sets the # of players & cycles through scenarios for each.')
     print ('-m, --map            - Tells the program which map to use')
-    print ('Valid maps are paris(1), sapienza(2), marrakesh(3), bangkok(4), colorado(5), hokkaido(6)')
+    print ('Valid maps are paris(1), sapienza(2), marrakesh(3), bangkok(4), colorado(5), hokkaido(6), miami(7), santa_fortuna(8)')
     #print ('NYI -v, --verbose        - Enable verbose output for this script.')
     sys.exit(0)
 
